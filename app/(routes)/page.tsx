@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import { generatePageMetadata } from '@/config/site'
 import { Hero } from '@/components/sections/hero/Hero'
+import { TrustSignals } from '@/components/sections/trust-signals/TrustSignals'
+import { FeaturedVideo } from '@/components/sections/featured-video/FeaturedVideo'
+import { AboutPreview } from '@/components/sections/about-preview/AboutPreview'
 import { Services } from '@/components/sections/services/Services'
-import { MediaShowcase } from '@/components/sections/media-showcase/MediaShowcase'
 import { Testimonials } from '@/components/sections/testimonials/Testimonials'
 import { BookingCTA } from '@/components/sections/booking-cta/BookingCTA'
 
@@ -16,19 +18,25 @@ export const metadata: Metadata = generatePageMetadata(
 export default function HomePage() {
   return (
     <>
-      {/* Hero Section */}
+      {/* 1. Hero Section */}
       <Hero />
-      
-      {/* Services Section */}
+
+      {/* 2. Trust Signals */}
+      <TrustSignals />
+
+      {/* 3. Featured Performance Video */}
+      <FeaturedVideo />
+
+      {/* 4. About Preview */}
+      <AboutPreview />
+
+      {/* 5. Event Types */}
       <Services />
-      
-      {/* Media Showcase Section */}
-      <MediaShowcase />
-      
-      {/* Testimonials Section */}
+
+      {/* 6. Testimonials */}
       <Testimonials />
-      
-      {/* Booking CTA Section */}
+
+      {/* 7. Strong Booking CTA */}
       <BookingCTA />
     </>
   )

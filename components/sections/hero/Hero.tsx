@@ -16,7 +16,7 @@ function Hero({ className }: HeroProps) {
   const { openBooking } = useWhatsApp()
 
   const scrollToContent = () => {
-    const element = document.getElementById('services')
+    const element = document.getElementById('trust-signals')
     element?.scrollIntoView({ behavior: 'smooth' })
   }
 
