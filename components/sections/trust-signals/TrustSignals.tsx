@@ -1,50 +1,32 @@
 'use client'
 
-import { Star, Award, Calendar, Users, Music, ThumbsUp } from 'lucide-react'
 import { cn } from '@/lib/utils/cn'
 import { Container } from '@/components/layout/container/Container'
+import type { TrustSectionProps } from '@/types/sections'
 
-interface TrustSignalsProps {
-  className?: string
-}
-
-const stats = [
-  {
-    icon: Calendar,
-    value: '500+',
-    label: 'Events Performed',
-  },
-  {
-    icon: Star,
-    value: '10+',
-    label: 'Years Experience',
-  },
-  {
-    icon: ThumbsUp,
-    value: '100%',
-    label: 'Client Satisfaction',
-  },
-  {
-    icon: Users,
-    value: '50K+',
-    label: 'Audience Members',
-  },
-]
-
-const trustedBy = [
-  'Hilton Hotels',
-  'Four Seasons',
-  'The Ritz-Carlton',
-  'Marriott International',
-  'Wynn Resorts',
-]
-
-function TrustSignals({ className }: TrustSignalsProps) {
+function TrustSignals({
+  stats,
+  brands,
+  brandsLabel = 'Trusted by leading brands & venues',
+  id,
+  className,
+}: TrustSectionProps) {
   return (
-    <section id="trust-signals" className={cn('py-12 md:py-16 bg-gray-50 border-y border-gray-100', className)}>
+    <section
+      id={id}
+      className={cn('py-12 md:py-16 bg-gray-50 border-y border-gray-100', className)}
+    >
       <Container>
         {/* Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div
+          className={cn(
+            'grid gap-8',
+            brands.length > 0 && 'mb-12',
+            stats.length <= 2 && 'grid-cols-2',
+            stats.length === 3 && 'grid-cols-3',
+            stats.length >= 4 && 'grid-cols-2 md:grid-cols-4'
+          )}
+        >
           {stats.map((stat) => (
             <div key={stat.label} className="text-center group">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary-100 mb-3 group-hover:bg-primary-600 transition-colors duration-300">
@@ -57,25 +39,27 @@ function TrustSignals({ className }: TrustSignalsProps) {
         </div>
 
         {/* Trusted By */}
-        <div className="text-center">
-          <p className="text-sm text-gray-400 uppercase tracking-wider font-medium mb-6">
-            Trusted by leading brands & venues
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-            {trustedBy.map((brand) => (
-              <span
-                key={brand}
-                className="text-gray-400 font-semibold text-lg hover:text-gray-600 transition-colors"
-              >
-                {brand}
-              </span>
-            ))}
+        {brands.length > 0 && (
+          <div className="text-center">
+            <p className="text-sm text-gray-400 uppercase tracking-wider font-medium mb-6">
+              {brandsLabel}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+              {brands.map((brand) => (
+                <span
+                  key={brand}
+                  className="text-gray-400 font-semibold text-lg hover:text-gray-600 transition-colors"
+                >
+                  {brand}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </Container>
     </section>
   )
 }
 
 export { TrustSignals }
-export type { TrustSignalsProps }
+export type { TrustSectionProps }
